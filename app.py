@@ -12,6 +12,9 @@ def interactive_map():
 
 def test_page():
     st.write('This is a test page')
+    download = open('test_download.html','r')
+    html = download.read()
+    components.html(html, height = 600)
 # Set up the directory for pages in app
 pages = {
     "Interactive Map": interactive_map,

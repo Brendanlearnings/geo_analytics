@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Download JSON Example</title>
+</head>
+<body>
+	<h1>Download JSON Example</h1>
+	<button id="download-btn">Download JSON</button>
+
+	<script>
+		const data = { name: "John Doe", age: 30 };
+
+		const downloadBtn = document.getElementById("download-btn");
+		downloadBtn.addEventListener("click", () => {
+			const jsonData = JSON.stringify(data, null, 2);
+			const blob = new Blob([jsonData], { type: "application/json" });
+			const url = URL.createObjectURL(blob);
+			const link = document.createElement("a");
+			link.href = url;
+			link.download = "data.json";
+			document.body.appendChild(link);
+			link.click();
+			document.body.removeChild(link);
+			URL.revokeObjectURL(url);
+		});
+	</script>
+</body>
+</html>
