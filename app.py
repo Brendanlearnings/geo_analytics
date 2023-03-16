@@ -42,7 +42,7 @@ html = '''
                 authOptions: {
                     //Use Azure Active Directory authentication.
                     authType: 'anonymous',
-                    clientId: 'e6b6ab59-eb5d-4d25-aa57-581135b927f0', //Your Azure Maps client id for accessing your Azure Maps account.
+                    clientId: '333b2035-3365-4eff-93b7-3f1785285130', //Your Azure Maps client id for accessing your Azure Maps account.
                     getToken: function (resolve, reject, map) {
                         //URL to your authentication service that retrieves an Azure Active Directory Token.
                         var tokenServiceUrl = "https://samples.azuremaps.com/api/GetAzureMapsToken";
