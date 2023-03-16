@@ -5,6 +5,7 @@ import streamlit.components.v1 as components
 ############################################
 
 interactive_map = open('interactive_map.html','r')
-components.html(interactive_map, height = 600)
+html = interactive_map.read()
+components.html(html, height = 600)
 
 st.write('Test')
