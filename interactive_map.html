@@ -125,7 +125,8 @@
                     alert(error);
                 });
             } else {
-                var body = searchArea.toJson();
+                var body = searchArea.toJson()
+                const data = download(body);
 
                 //Search for points of interest inside the search area.
                 searchURL.searchInsideGeometry(atlas.service.Aborter.timeout(3000), query, body, {
@@ -135,6 +136,22 @@
                     alert(error);
                 });
             }
+        }
+
+        function download() {
+            const downloadBtn = document.getElementById("download-btn");
+		downloadBtn.addEventListener("click", () => {
+			const jsonData = JSON.stringify(data, null, 2);
+			const blob = new Blob([jsonData], { type: "application/json" });
+			const url = URL.createObjectURL(blob);
+			const link = document.createElement("a");
+			link.href = url;
+			link.download = "data.json";
+			document.body.appendChild(link);
+			link.click();
+			document.body.removeChild(link);
+			URL.revokeObjectURL(url);
+		});
         }
 
         function showResults(results) {
