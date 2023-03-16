@@ -14,7 +14,7 @@ def test_page():
     st.write('This is a test page')
     download = open('test_download.html','r')
     html = download.read()
-    components.html(html, height = 600)
+    components.html(html)
 # Set up the directory for pages in app
 pages = {
     "Interactive Map": interactive_map,
