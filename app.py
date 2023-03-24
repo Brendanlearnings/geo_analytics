@@ -9,7 +9,7 @@ def interactive_map():
     st.write('This interactive map allows you to draw features and see what points of interest fall within the given polygon, feel free to download the features contained in the polygon once you are done!')
     maps = open('updated.html','r+')
     html = maps.read()
-    components.html(html, height = 900)
+    components.html(html, height = 700)
 
 # Set up the directory for pages in app
 pages = {
