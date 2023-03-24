@@ -20,7 +20,7 @@ def test_download():
     st.title('Testing the download functionality after making a selection')
     maps = open('updated.html','r+')
     html = maps.read()
-    components.html(html)
+    components.html(html, height = 900)
 
 # Set up the directory for pages in app
 pages = {
