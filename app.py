@@ -15,10 +15,18 @@ def test_page():
     download = open('test_download.html','r')
     html = download.read()
     components.html(html)
+
+def test_download():
+    st.title('Testing the download functionality after making a selection')
+    maps = open('updated.html','r+')
+    html = maps.read()
+    components.html(html)
+
 # Set up the directory for pages in app
 pages = {
     "Interactive Map": interactive_map,
-    "TEST": test_page
+    "TEST": test_page,
+    "Updated":test_download
 }
 
 # Create a menu with the page names
