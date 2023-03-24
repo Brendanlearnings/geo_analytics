@@ -11,6 +11,8 @@
     <meta name="author" content="Microsoft Azure Maps" />
     <meta name="screenshot" content="screenshot.jpg" />
     
+    <button id="downloadBtn" style="position: fixed;bottom: 20px;left: 20px;padding: 10px;background-color: blue;color: white;border: none;border-radius: 5px;cursor: pointer;">Download Results as JSON</button>
+    
     
     <!-- Add references to the Azure Maps Map control JavaScript and CSS files. -->
     <link href="https://atlas.microsoft.com/sdk/javascript/mapcontrol/2/atlas.min.css" rel="stylesheet" />
@@ -188,9 +190,7 @@
 <body onload="GetMap()">
     
     <div id="myMap" style="position:relative;width:100%;min-width:290px;height:600px;"></div>
-    <div>
-        <button id="downloadBtn" style="position: fixed;bottom: 20px;left: 20px;padding: 10px;background-color: blue;color: white;border: none;border-radius: 5px;cursor: pointer;">Download Results as JSON</button>
-    </div>
+    
     <div style="position:absolute;top:10px;left:10px;background-color:white;border-radius:10px;padding:10px;">
         POI Query: <input type="text" id="queryTbx" value="pizza" title="POI Query"/>
     </div>
