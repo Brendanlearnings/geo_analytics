@@ -17,7 +17,7 @@ pages = {
 }
 
 # Create a menu with the page names
-selection = st.sidebar.radio("Go to", list(pages.keys()))
+selection = st.sidebar.radio("Navigate to:", list(pages.keys()))
 
 # Display the selected page with its corresponding function
 pages[selection]()
