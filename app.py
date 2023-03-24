@@ -7,6 +7,7 @@ import streamlit.components.v1 as components
 def interactive_map():
     st.title('Point of Interest within a given isochrone')
     st.write('This interactive map allows you to draw features and see what points of interest fall within the given polygon, feel free to download the features contained in the polygon once you are done!')
+    st.write('Please note that one a new POI Query is typed that you need to redraw the polygon')
     maps = open('updated.html','r+')
     html = maps.read()
     components.html(html, height = 700)
