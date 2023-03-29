@@ -13,4 +13,3 @@ def geocode(location):
     df = pd.DataFrame(request)
 
     return df
-

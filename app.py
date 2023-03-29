@@ -17,11 +17,19 @@ def geocode():
     st.title('Geocode a address to a extract some usefull information from it.')
     address = st.text_input('Fully qualified address (eg. 4 Waterfall Street, Century City, Cape Town)', value='4 Waterfall Street, Century City, Cape Town', label_visibility='hidden')
     
-    if not isinstance(address, str):
-        st.exception(ValueError("Input must be text."))
-    else:
-        lat_long = gc.geocode(address)
-        st.dataframe(lat_long)
+    all_data_from_response = gc.geocode(address)
+    st.dataframe(all_data_from_response)
+
+    lat = all_data_from_response.loc['lat','geometry']
+    long = all_data_from_response.loc['lng','geometry']
+
+    map_dict = {'LATITUDE':[lat],
+                'LONGITUDE':[long]}
+
+    map_df = pd.DataFrame(map_dict)
+    st.dataframe(map_df)
+    
+
 # Set up the directory for pages in app
 pages = {
     "Interactive Map": interactive_map,
