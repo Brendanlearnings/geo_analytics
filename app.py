@@ -16,7 +16,7 @@ def interactive_map():
 def geocode():
     st.title('Geocode a address to a extract some usefull information from it.')
     address = st.text_input('Fully qualified address (eg. 4 Waterfall Street, Century City, Cape Town)')
-    if address == None:
+    if len(address) == 0:
         lat_long = gc.geocode(address)
         st.dataframe('4 Waterfall Street, Century City, Cape Town')
     else:
