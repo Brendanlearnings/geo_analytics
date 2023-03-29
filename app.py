@@ -2,7 +2,7 @@
 import pandas as pd 
 import streamlit as st
 import streamlit.components.v1 as components
-import geocode as gc
+import geocodev2 as gc
 ############################################
 
 def interactive_map():
@@ -18,16 +18,9 @@ def geocode():
     address = st.text_input('Fully qualified address (eg. 4 Waterfall Street, Century City, Cape Town)', value='4 Waterfall Street, Century City, Cape Town', label_visibility='hidden')
     
     all_data_from_response = gc.geocode(address)
-    st.dataframe(all_data_from_response)
+    st.json(all_data_from_response)
 
-    lat = all_data_from_response.loc['lat','geometry']
-    long = all_data_from_response.loc['lng','geometry']
-
-    map_dict = {'LATITUDE':[lat],
-                'LONGITUDE':[long]}
-
-    map_df = pd.DataFrame(map_dict)
-    st.map(map_df)
+    
     
 
 # Set up the directory for pages in app
