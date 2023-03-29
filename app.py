@@ -15,7 +15,7 @@ def interactive_map():
 
 def geocode():
     st.title('Geocode a address to a extract some usefull information from it.')
-    address = st.text_input('Fully qualified address (eg. 4 Waterfall Street, Century City, Cape Town)', value='4 Waterfall Street, Century City, Cape Town')
+    address = st.text_input('Fully qualified address (eg. 4 Waterfall Street, Century City, Cape Town)', value='4 Waterfall Street, Century City, Cape Town', label_visibility='visible')
     
     if not isinstance(address, str):
         st.exception(ValueError("Input must be text."))
