@@ -16,9 +16,15 @@ def interactive_map():
 def geocode():
     st.title('Geocode a address to a extract some usefull information from it.')
     address = st.text_input('Fully qualified address (eg. 4 Waterfall Street, Century City, Cape Town)')
-   
-    lat_long = gc.geocode(address)
-    st.dataframe(lat_long)
+    if address == None:
+        lat_long = gc.geocode(address)
+        st.dataframe('4 Waterfall Street, Century City, Cape Town')
+    else:
+        if not isinstance(address, str):
+            st.exception(ValueError("Input must be text."))
+        else:
+            lat_long = gc.geocode(address)
+            st.dataframe(lat_long)
 # Set up the directory for pages in app
 pages = {
     "Interactive Map": interactive_map,
