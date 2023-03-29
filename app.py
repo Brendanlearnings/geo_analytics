@@ -25,7 +25,7 @@ def geocode_to_df(location):
 ####### App Pages ###########
 def interactive_map():
     st.title('Point of Interest within a given isochrone')
-    st.write('This interactive map allows you to draw features and see what points of interest fall within the given polygon, feel free to download the features contained in the polygon once you are done!')
+    st.markdown('This interactive map allows you to draw features and see what points of interest fall within the given polygon.')
     st.write('Please note that one a new POI Query is typed that you need to redraw the polygon')
     maps = open('updated.html','r+')
     html = maps.read()
@@ -33,7 +33,8 @@ def interactive_map():
 
 def geocode():
     # Display elements
-    st.title('Geocode a address to a extract some usefull information from it.')
+    st.title('Geocode an address to a extract some usefull information from it.')
+
     address = st.text_input('Fully qualified address (eg. 4 Waterfall Street, Century City, Cape Town)', value='4 Waterfall Street, Century City, Cape Town', label_visibility='hidden')
     point_on_map = geocode_to_df(address)[0]
     
