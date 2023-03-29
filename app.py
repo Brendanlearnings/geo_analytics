@@ -14,19 +14,26 @@ def interactive_map():
     components.html(html, height = 700)
 
 def geocode():
+    # Display elements
     st.title('Geocode a address to a extract some usefull information from it.')
     address = st.text_input('Fully qualified address (eg. 4 Waterfall Street, Century City, Cape Town)', value='4 Waterfall Street, Century City, Cape Town', label_visibility='hidden')
     
+    # Data retrieval and manipulation elements 
     all_data_from_response = gc.geocode(address)
-    st.json(all_data_from_response, expanded=False)
-
     lat = all_data_from_response['results'][0]['position']['lat']
     long = all_data_from_response['results'][0]['position']['lon']
 
+    # Prep and display retrived data
     map_data = {
         'LATITUDE':[lat],
         'LONGITUDE':[long]
     }
+
+    map_df = pd.DataFrame(map_data)
+    st.map(map_df)
+    st.json(all_data_from_response, expanded=False)
+
+
 
     
     
