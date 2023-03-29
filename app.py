@@ -38,7 +38,7 @@ def geocode():
     point_on_map = geocode_to_df(address)[0]
     
     st.map(point_on_map)
-    st.write('Here is a json object with some interesting information if you would like to expore this specific location on the earth!')
+    st.write('Below is a json object with some interesting information if you would like to expore this specific location on the earth!')
     st.json(geocode_to_df(address)[1], expanded=False)
 ################################
 
