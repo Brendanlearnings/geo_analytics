@@ -20,7 +20,7 @@ def geocode():
         st.exception(ValueError("Input must be text."))
     else:
         lat_long = gc.geocode(address)
-        st.DataFrame(lat_long)
+        st.dataframe(lat_long)
 # Set up the directory for pages in app
 pages = {
     "Interactive Map": interactive_map,
