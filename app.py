@@ -20,8 +20,8 @@ def geocode():
     all_data_from_response = gc.geocode(address)
     st.json(all_data_from_response, expanded=False)
 
-    lat = all_data_from_response['results']['position'][0]['lat']
-    long = all_data_from_response['results']['position'][0]['lon']
+    lat = all_data_from_response['results'][0]['position']['lat']
+    long = all_data_from_response['results'][0]['position']['lon']
 
     map_data = {
         'LATITUDE':[lat],
