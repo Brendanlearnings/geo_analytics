@@ -22,8 +22,8 @@ def geocode():
     all_data_from_response = json.loads(all_data_from_response)
     st.json(all_data_from_response, expanded=False)
 
-    lat = all_data_from_response['results']['position']['lat']
-    long = all_data_from_response['results']['position']['lon']
+    lat = all_data_from_response['results']['position'][0]['lat']
+    long = all_data_from_response['results']['position'][0]['lon']
 
     map_data = {
         'LATITUDE':[lat],
