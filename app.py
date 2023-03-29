@@ -3,6 +3,7 @@ import pandas as pd
 import streamlit as st
 import streamlit.components.v1 as components
 import geocodev2 as gc
+import json
 ############################################
 
 def interactive_map():
@@ -18,6 +19,7 @@ def geocode():
     address = st.text_input('Fully qualified address (eg. 4 Waterfall Street, Century City, Cape Town)', value='4 Waterfall Street, Century City, Cape Town', label_visibility='hidden')
     
     all_data_from_response = gc.geocode(address)
+    all_data_from_response = json.loads(all_data_from_response)
     st.json(all_data_from_response, expanded=False)
 
     lat = all_data_from_response['results']['position']['lat']
