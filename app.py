@@ -2,7 +2,6 @@
 import pandas as pd 
 import streamlit as st
 import streamlit.components.v1 as components
-import geocode as gc
 ############################################
 
 def interactive_map():
@@ -19,6 +18,7 @@ def geocode():
     if not isinstance(address, str):
         st.exception(ValueError("Input must be text."))
     else:
+        import geocode as gc
         lat_long = gc.geocode(address)
         st.write(lat_long)
 # Set up the directory for pages in app
