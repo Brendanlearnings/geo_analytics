@@ -10,10 +10,13 @@ geocoder = OpenCageGeocode(key)
 #print(request)
 
 def geocode(location):
-    request = geocoder.geocode(location)
-    request = request[0]
+    if location not None:
+        request = geocoder.geocode(location)
+        request = request[0]
     
-    lat = request['geometry']['lat']
-    long = request['geometry']['lng']
+        lat = request['geometry']['lat']
+        long = request['geometry']['lng']
 
-    return [lat,long]
+        return [lat,long]
+    else:
+        return [0,0]
