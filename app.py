@@ -18,7 +18,7 @@ def geocode():
     address = st.text_input('Fully qualified address (eg. 4 Waterfall Street, Century City, Cape Town)', value='4 Waterfall Street, Century City, Cape Town', label_visibility='hidden')
     
     all_data_from_response = gc.geocode(address)
-    st.json(all_data_from_response)
+    st.json(all_data_from_response, expand=False)
 
     
     
