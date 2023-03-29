@@ -27,7 +27,7 @@ def geocode():
                 'LONGITUDE':[long]}
 
     map_df = pd.DataFrame(map_dict)
-    st.dataframe(map_df)
+    st.map(map_df)
     
 
 # Set up the directory for pages in app
