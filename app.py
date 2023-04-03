@@ -51,6 +51,18 @@ def route_matrix():
                  ('eco - balance between economy and speed',
                   'fastest - time optimized route',
                   'shortest - utilize the shortest route available'))
+    st.selectbox('With what vehicle are you traveling with?',
+                ('bicycle',
+                 'bus',
+                 'car',
+                 'motorcycle',
+                 'pedestrian',
+                 'taxi',
+                 'truck',
+                 'van'))
+    st.selectbox('Would you like to make use of live traffic conditions?',
+                 ('Yes',
+                  'No'))
 
     if st.button('Submit'):
         data_for_request = construct_df.values.tolist()
