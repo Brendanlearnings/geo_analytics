@@ -48,7 +48,7 @@ def route_matrix():
     st.experimental_data_editor(construct_df,num_rows='dynamic',key="data_editor")
 
     if st.button('Submit'):
-        data_for_request = construct_df.to_list()
+        data_for_request = construct_df.values.tolist()
         st.write(st.session_state["data_editor"])
 
 
