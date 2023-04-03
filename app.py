@@ -13,7 +13,7 @@ def geocode_to_df(location):
     lat = all_data_from_response['results'][0]['position']['lat']
     long = all_data_from_response['results'][0]['position']['lon']
 
-    # Prep and display retrived data
+    # Prep data into dataframe that is excessable through the st.maps element
     map_data = {
         'LATITUDE':[lat],
         'LONGITUDE':[long]
@@ -48,8 +48,8 @@ def route_matrix():
     st.experimental_data_editor(construct_df,num_rows='dynamic')
 
     if st.button('Submit'):
-        construct_df['Lattitude'] = geocode_to_df(gc(construct_df['Address']))[2]
-        construct_df['Longitude'] = geocode_to_df(gc(construct_df['Address']))[3]
+        construct_df['Lattitude'] = geocode_to_df(construct_df['Address'])[2]
+        construct_df['Longitude'] = geocode_to_df(construct_df['Address'])[3]
 
         st.dataframe(data=construct_df)
 ################################
