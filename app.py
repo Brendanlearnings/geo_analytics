@@ -109,8 +109,15 @@ def route_matrix():
         route_pointz = route_plan[0]
         st.json(route_pointz)
         st.write(route_plan[1])
-        route_data = route_pointz["routes"][0]["legs"][0]["points"]
-        route_points = pd.json_normalize(route_data)
+        
+        # Loop through the response and extract all data that is associated with points:
+        for route_points in route_pointz["routes"]:
+            for leg in route_points['legs']:
+                data_points_for_route = leg['points']
+                
+
+        #route_data = route_pointz["routes"][0]["legs"][0]["points"]
+        route_points = pd.json_normalize(data_points_for_route)
         st.map(route_points)
         
         
