@@ -23,5 +23,5 @@ def route_matrix(points:list = [], avoid:list = [], departAt:str = None, compute
     return response
 
 
-
+route_matrix
    
