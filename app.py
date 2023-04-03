@@ -33,21 +33,27 @@ def interactive_map():
 
 def geocode():
     # Display elements
-    st.title('Geocode an address to a extract some usefull information from it.')
+    st.title('Geocode an address or point of interest to a extract some usefull information from it.')
 
-    address = st.text_input('Fully qualified address (eg. 4 Waterfall Street, Century City, Cape Town)', value='4 Waterfall Street, Century City, Cape Town', label_visibility='hidden')
+    address = st.text_input(value='4 Waterfall Street, Century City, Cape Town', label_visibility='hidden')
     point_on_map = geocode_to_df(address)[0]
     
     st.map(point_on_map)
     st.write('Below is a json object with some interesting information if you would like to expore this specific location on the earth!')
     st.json(geocode_to_df(address)[1], expanded=False)
+
+def route_matrix():
+    # Display elements
+    construct_df = pd.DataFrame({'Address': []}, dtype=str)
+    st.experimental_data_editor(construct_df)
 ################################
 
 
 # Set up the directory for pages in app
 pages = {
     "Interactive Map": interactive_map,
-    "Geocode": geocode
+    "Geocode": geocode,
+    "Route Optimization": route_matrix
 }
 
 # Create a menu with the page names
