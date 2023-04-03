@@ -46,6 +46,7 @@ def route_matrix():
     # Display elements
     construct_df = pd.DataFrame({'Address': []}, dtype=str)
     st.experimental_data_editor(construct_df)
+    construct_df.loc[construct_df["Address"].idxmax()]["command"]
 ################################
 
 
