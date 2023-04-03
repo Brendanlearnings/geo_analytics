@@ -20,7 +20,7 @@ def geocode_to_df(location):
     }
     map_df = pd.DataFrame(map_data)
 
-    return map_df,all_data_from_response
+    return map_df,all_data_from_response,lat,long
 ################################
 ####### App Pages ###########
 def interactive_map():
@@ -44,10 +44,14 @@ def geocode():
 
 def route_matrix():
     # Display elements
-    construct_df = pd.DataFrame({'Address': ['4 Waterfall Street, Century City, Cape Town']}, dtype=str)
-    # construct_df = load_data()
+    construct_df = pd.DataFrame({'Address': ['Please enter the address you would like to use']}, dtype=str)
     st.experimental_data_editor(construct_df,num_rows='dynamic')
-    #construct_df.loc[construct_df["Address"]]
+
+    if st.button('Submit'):
+        construct_df['Lattitude'] = geocode_to_df(gc(construct_df['Address']))[2]
+        construct_df['Longitude'] = geocode_to_df(gc(construct_df['Address']))[3]
+
+        st.dataframe(data=construct_df)
 ################################
 
 
