@@ -87,6 +87,7 @@ def route_matrix():
                 insert_df = pd.DataFrame(construct_data)
                 output_df = pd.concat([output_df,insert_df],ignore_index=True)
 
+        st.dataframe(output_df)
         geocoded_points = output_df[['LATITUDE','LONGITUDE']].values.tolist()
         st.map(output_df)
 
@@ -103,8 +104,8 @@ def route_matrix():
         else:
             traf = 'false'
 
-        route_plan = rp.route_matrix(points=geocoded_points,avoid=[],departAt=None,RouteType=route,travelMode=vehicle,traffic=traf)
-        st.json(route_plan)
+        # route_plan = rp.route_matrix(points=geocoded_points,avoid=[],departAt=None,RouteType=route,travelMode=vehicle,traffic=traf)
+        # st.json(route_plan)
 
 # ################################
 
