@@ -49,7 +49,7 @@ def route_matrix():
 
     if st.button('Submit'):
         data_for_request = construct_df.values.tolist()
-        st.write(type(st.session_state["data_editor"]))
+        st.write(st.session_state["data_editor"])
 
 
 
