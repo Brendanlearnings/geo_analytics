@@ -50,12 +50,12 @@ def route_matrix():
     if st.button('Submit'):
         data_for_request = construct_df.values.tolist()
         dict_data = st.session_state["data_editor"]
-
-        for address in dict_data['added_rows']:
-            for element in address.values():
-                output_df = pd.DataFrame({'Address': [],
+        output_df = pd.DataFrame({'Address': [],
                                   'LATITUDE':[],
                                   'LONGITUDE':[]})
+        for address in dict_data['added_rows']:
+            for element in address.values():
+                
                 get_lat_long = geocode_to_df(str(element))
                 lat = get_lat_long[2]
                 long = get_lat_long[3]
@@ -66,7 +66,7 @@ def route_matrix():
                 }
 
                 insert_df = pd.DataFrame(construct_data)
-                pd.concat([output_df,insert_df],ignore_index=True)
+                output_df = pd.concat([output_df,insert_df],ignore_index=True)
 
         st.dataframe(output_df)
         st.map(output_df)
