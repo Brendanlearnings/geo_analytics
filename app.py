@@ -3,6 +3,7 @@ import pandas as pd
 import streamlit as st
 import streamlit.components.v1 as components
 import geocodev2 as gc
+import route_planner as route
 ############################################
 
 ####### Fucntions for reuse ####
@@ -46,6 +47,10 @@ def route_matrix():
     # Display elements
     construct_df = pd.DataFrame({'Address': []}, dtype=str)
     st.experimental_data_editor(construct_df,num_rows='dynamic',key="data_editor")
+    st.selectbox('What route optimization would you like to use?',
+                 ('eco - balance between economy and speed',
+                  'fastest - time optimized route',
+                  'shortest - utilize the shortest route available'))
 
     if st.button('Submit'):
         data_for_request = construct_df.values.tolist()
@@ -53,6 +58,7 @@ def route_matrix():
         output_df = pd.DataFrame({'Address': [],
                                   'LATITUDE':[],
                                   'LONGITUDE':[]})
+        # Loop through addresses and send a response to the geocoding function.
         for address in dict_data['added_rows']:
             for element in address.values():
                 
@@ -68,19 +74,8 @@ def route_matrix():
                 insert_df = pd.DataFrame(construct_data)
                 output_df = pd.concat([output_df,insert_df],ignore_index=True)
 
-        st.dataframe(output_df)
         st.map(output_df)
 
-
-
-        
-
-
-
-#         construct_df['Lattitude'] = geocode_to_df(construct_df['Address'])[2]
-#         construct_df['Longitude'] = geocode_to_df(construct_df['Address'])[3]
-
-#         st.dataframe(data=construct_df)
 # ################################
 
 
