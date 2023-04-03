@@ -65,8 +65,8 @@ def route_matrix():
                     'LONGITUDE':[long]
                 }
 
-                insert_df = pd.DataFrame(construct_data)
-                final = pd.concat([insert_df,output_df],ignore_index=True)
+            insert_df = pd.DataFrame(construct_data)
+            final = pd.concat([insert_df,output_df],ignore_index=True)
 
         st.dataframe(final)
         st.map(final)
