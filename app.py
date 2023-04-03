@@ -65,6 +65,7 @@ def route_matrix():
                   'No'))
 
     if st.button('Submit'):
+        
         data_for_request = construct_df.values.tolist()
         dict_data = st.session_state["data_editor"]
         output_df = pd.DataFrame({'Address': [],
@@ -86,7 +87,7 @@ def route_matrix():
                 insert_df = pd.DataFrame(construct_data)
                 output_df = pd.concat([output_df,insert_df],ignore_index=True)
 
-        st.write(output_df[['LATITUDE','LONGITUDE']].values.tolist())
+        geocoded_points = output_df[['LATITUDE','LONGITUDE']].values.tolist()
         st.map(output_df)
 
         # Map inputs to package request parameters
@@ -102,7 +103,8 @@ def route_matrix():
         else:
             traf = 'false'
 
-        #route_plan = rp()
+        route_plan = rp(points=geocoded_points,avoid=[],departAt=None,RouteType=route,travelMode=vehicle,traffic=traf)
+        st.json(route_plan)
 
 # ################################
 
