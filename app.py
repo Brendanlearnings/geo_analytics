@@ -48,11 +48,13 @@ def route_matrix():
     st.experimental_data_editor(construct_df,num_rows='dynamic')
 
     if st.button('Submit'):
-        construct_df['Lattitude'] = geocode_to_df(construct_df['Address'])[2]
-        construct_df['Longitude'] = geocode_to_df(construct_df['Address'])[3]
+        geocoded = geocode_to_df(construct_df['Address'])
+        st.write(geocode[2], geocode[3])
+#         construct_df['Lattitude'] = geocode_to_df(construct_df['Address'])[2]
+#         construct_df['Longitude'] = geocode_to_df(construct_df['Address'])[3]
 
-        st.dataframe(data=construct_df)
-################################
+#         st.dataframe(data=construct_df)
+# ################################
 
 
 # Set up the directory for pages in app
