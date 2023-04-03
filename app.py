@@ -51,6 +51,8 @@ def route_matrix():
         data_for_request = construct_df.to_dict()
         st.write(data_for_request)
 
+        st.write(st.session_state["data_editor"])
+
 
 #         construct_df['Lattitude'] = geocode_to_df(construct_df['Address'])[2]
 #         construct_df['Longitude'] = geocode_to_df(construct_df['Address'])[3]
