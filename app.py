@@ -35,7 +35,7 @@ def geocode():
     # Display elements
     st.title('Geocode an address or point of interest to a extract some usefull information from it.')
 
-    address = st.text_input(value='4 Waterfall Street, Century City, Cape Town')
+    address = st.text_input(label='Input the address you would like to geocode',value='4 Waterfall Street, Century City, Cape Town')
     point_on_map = geocode_to_df(address)[0]
     
     st.map(point_on_map)
