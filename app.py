@@ -108,8 +108,8 @@ def route_matrix():
         st.json(route_plan)
         route_data = route_plan["routes"][0]["legs"][0]["points"]
         route_points = pd.json_normalize(route_data)
-        st.dataframe(route_points)
-        st.json(route_data)
+        st.maps(route_points)
+        
         
 
 # ################################
