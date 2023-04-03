@@ -15,7 +15,7 @@ def route_matrix(points:list = [], avoid:list = [], departAt:str = None, compute
         depart_at = f'departAt={depart_at}'
 
     # Construct the Rest API request
-    querystring = {'api-version=1.0','subscription-key':'gOpOAK_LpXt8qCWYwUwp9JRrscQ-xnrnpCtexOqaGS4',f'query={flattened_coords}',f'avoid={aviods_poi}',depart_at,f'computeBestOrder={compute_best_order}',f'computeTravelTimeFor={computeTravelTimeFor}',f'routeRepresentation={RouteRepresentationForBestOrder}',f'routeType={routeType}',f'travelMode={travelMode}',f'traffic={traffic}'}
+    querystring = {'api-version=1.0','subscription-key:gOpOAK_LpXt8qCWYwUwp9JRrscQ-xnrnpCtexOqaGS4',f'query={flattened_coords}',f'avoid={aviods_poi}',depart_at,f'computeBestOrder={compute_best_order}',f'computeTravelTimeFor={computeTravelTimeFor}',f'routeRepresentation={RouteRepresentationForBestOrder}',f'routeType={routeType}',f'travelMode={travelMode}',f'traffic={traffic}'}
 
     payload = ""
     response = requests.request("GET", url, data=payload, params=querystring).json()
