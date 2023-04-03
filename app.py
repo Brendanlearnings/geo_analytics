@@ -89,6 +89,7 @@ def route_matrix():
 
         st.dataframe(output_df,use_container_width=True)
         geocoded_points = output_df[['LATITUDE','LONGITUDE']].values.tolist()
+        st.write(geocoded_points)
         st.map(output_df)
 
         # Map inputs to package request parameters
