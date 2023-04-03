@@ -66,10 +66,10 @@ def route_matrix():
                 }
 
                 insert_df = pd.DataFrame(construct_data)
-                pd.concat([insert_df,output_df],ignore_index=True)
+                final = pd.concat([insert_df,output_df],ignore_index=True)
 
-        st.dataframe(output_df)
-        st.map(output_df)
+        st.dataframe(final)
+        st.map(final)
 
 
 
