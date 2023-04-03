@@ -3,7 +3,7 @@ import pandas as pd
 import streamlit as st
 import streamlit.components.v1 as components
 import geocodev2 as gc
-import route_planner as route
+import route_planner as rp
 ############################################
 
 ####### Fucntions for reuse ####
@@ -47,11 +47,11 @@ def route_matrix():
     # Display elements
     construct_df = pd.DataFrame({'Address': []}, dtype=str)
     st.experimental_data_editor(construct_df,num_rows='dynamic',key="data_editor")
-    st.selectbox('What route optimization would you like to use?',
+    routes = st.selectbox('What route optimization would you like to use?',
                  ('eco - balance between economy and speed',
                   'fastest - time optimized route',
                   'shortest - utilize the shortest route available'))
-    st.selectbox('With what vehicle are you traveling with?',
+    vehicle = st.selectbox('With what vehicle are you traveling with?',
                 ('bicycle',
                  'bus',
                  'car',
@@ -60,7 +60,7 @@ def route_matrix():
                  'taxi',
                  'truck',
                  'van'))
-    st.selectbox('Would you like to make use of live traffic conditions?',
+    traffic = st.selectbox('Would you like to make use of live traffic conditions?',
                  ('Yes',
                   'No'))
 
@@ -86,7 +86,23 @@ def route_matrix():
                 insert_df = pd.DataFrame(construct_data)
                 output_df = pd.concat([output_df,insert_df],ignore_index=True)
 
+        st.write(output_df['LATITUDE','LONGITUDE'].values.tolist())
         st.map(output_df)
+
+        # Map inputs to package request parameters
+        if routes == 'eco - balance between economy and speed':
+            route = 'eco'
+        if routes == 'fastest - time optimized route':
+            route = 'fastest'
+        if routes == 'shortest - utilize the shortest route available':
+            route = 'shortest'
+        
+        if traffic == 'Yes':
+            traf = 'true'
+        else:
+            traf = 'false'
+
+        #route_plan = rp()
 
 # ################################
 
