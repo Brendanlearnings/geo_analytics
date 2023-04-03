@@ -46,7 +46,7 @@ def geocode():
 def route_matrix():
     # Display elements
     construct_df = pd.DataFrame({'Address': []}, dtype=str)
-    st.experimental_data_editor(construct_df,num_rows='dynamic',key="data_editor")
+    st.experimental_data_editor(construct_df,num_rows='dynamic',key="data_editor",width=600)
     routes = st.selectbox('What route optimization would you like to use?',
                  ('eco - balance between economy and speed',
                   'fastest - time optimized route',
@@ -87,7 +87,7 @@ def route_matrix():
                 insert_df = pd.DataFrame(construct_data)
                 output_df = pd.concat([output_df,insert_df],ignore_index=True)
 
-        st.dataframe(output_df)
+        st.dataframe(output_df,width=600)
         geocoded_points = output_df[['LATITUDE','LONGITUDE']].values.tolist()
         st.map(output_df)
 
