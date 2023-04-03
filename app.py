@@ -52,8 +52,8 @@ def route_matrix():
         dict_data = st.session_state["data_editor"]
         for address in dict_data['added_rows']:
             st.write(address)
-            adrss = address[0]
-            st.write(adrss)
+            # adrss = address[0]
+            # st.write(adrss)
         
 
 
