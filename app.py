@@ -44,9 +44,10 @@ def geocode():
 
 def route_matrix():
     # Display elements
-    construct_df = pd.DataFrame({'Address': []}, dtype=str)
+    construct_df = pd.DataFrame({'Address': ['4 Waterfall Street, Century City, Cape Town']}, dtype=str)
+    construct_df = load_data()
     st.experimental_data_editor(construct_df)
-    construct_df.loc[construct_df["Address"]]
+    #construct_df.loc[construct_df["Address"]]
 ################################
 
 
