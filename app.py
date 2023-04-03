@@ -86,7 +86,7 @@ def route_matrix():
                 insert_df = pd.DataFrame(construct_data)
                 output_df = pd.concat([output_df,insert_df],ignore_index=True)
 
-        st.write(output_df['LATITUDE','LONGITUDE'].values.tolist())
+        st.write(output_df[['LATITUDE','LONGITUDE']].values.tolist())
         st.map(output_df)
 
         # Map inputs to package request parameters
