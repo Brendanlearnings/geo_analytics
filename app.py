@@ -48,8 +48,8 @@ def route_matrix():
     st.experimental_data_editor(construct_df,num_rows='dynamic')
 
     if st.button('Submit'):
-        geocoded = geocode_to_df(construct_df['Address'])
-        st.write(geocode[2], geocode[3])
+        geocoded = geocode_to_df(str(construct_df['Address']))[1]
+        st.json(geocoded)
 #         construct_df['Lattitude'] = geocode_to_df(construct_df['Address'])[2]
 #         construct_df['Longitude'] = geocode_to_df(construct_df['Address'])[3]
 
