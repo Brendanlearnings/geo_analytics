@@ -44,7 +44,7 @@ def geocode():
 
 def route_matrix():
     # Display elements
-    construct_df = pd.DataFrame({'Address': ['Please enter the address you would like to use']}, dtype=str)
+    construct_df = pd.DataFrame({'Address': []}, dtype=str)
     st.experimental_data_editor(construct_df,num_rows='dynamic',key="data_editor")
 
     if st.button('Submit'):
