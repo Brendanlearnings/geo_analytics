@@ -51,6 +51,7 @@ def route_matrix():
         data_for_request = construct_df.values.tolist()
         dict_data = st.session_state["data_editor"]
         for address in dict_data['added_rows']:
+            st.write(address)
             adrss = address[0]
             st.write(adrss)
         
