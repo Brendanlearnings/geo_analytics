@@ -20,7 +20,7 @@ def route_matrix(points:list = [], avoid:list = [], departAt:str = None, compute
     payload = ""
     response = requests.request("GET", url, data=payload, params=querystring).json()
 
-    return response
+    return response, str(querystring)
 
 
    
