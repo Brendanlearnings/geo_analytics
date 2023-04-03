@@ -103,7 +103,7 @@ def route_matrix():
         else:
             traf = 'false'
 
-        route_plan = rp(points=geocoded_points,avoid=[],departAt=None,RouteType=route,travelMode=vehicle,traffic=traf)
+        route_plan = rp.route_matrix(points=geocoded_points,avoid=[],departAt=None,RouteType=route,travelMode=vehicle,traffic=traf)
         st.json(route_plan)
 
 # ################################
