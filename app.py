@@ -106,9 +106,7 @@ def route_matrix():
             traf = 'false'
 
         route_plan = rp.route_matrix(points=geocoded_points,avoid=[],departAt=None,RouteType=route,travelMode=vehicle,traffic=traf)
-        route_plan = route_plan[0]
-        query_string = route_plan[1]
-        st.write(query_string)
+
         route_data = route_plan["routes"][0]["legs"][0]["points"]
         route_points = pd.json_normalize(route_data)
         st.map(route_points)
