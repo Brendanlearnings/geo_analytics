@@ -46,7 +46,7 @@ def route_matrix():
     # Display elements
     construct_df = pd.DataFrame({'Address': ['4 Waterfall Street, Century City, Cape Town']}, dtype=str)
     # construct_df = load_data()
-    st.experimental_data_editor(construct_df,num_rows=”dynamic”)
+    st.experimental_data_editor(construct_df,num_rows='dynamic')
     #construct_df.loc[construct_df["Address"]]
 ################################
 
