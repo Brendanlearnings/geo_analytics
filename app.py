@@ -45,8 +45,15 @@ def geocode():
 
 def route_matrix():
     # Display elements
+    st.title('Route Optimization')
+    st.markdown('This module is intended to optimize a route with `x` amount of waypoints (up to 150 can be used).')
+    st.markdown('Please enter the fully qualified addresses that you would like to use.')
+    st.markdown('* The first address is the starting.')
+    st.markdown('* The last address is the destination')
+    st.markdown('* The waypoints can be ordered however you like, the module will determine the most efficient between them.')
     construct_df = pd.DataFrame({'Address': []}, dtype=str)
     st.experimental_data_editor(construct_df,num_rows='dynamic',key="data_editor",use_container_width=True)
+    st.markdown('Please select the options you would like to use in the module.')
     routes = st.selectbox('What route optimization would you like to use?',
                  ('eco - balance between economy and speed',
                   'fastest - time optimized route',
@@ -87,9 +94,8 @@ def route_matrix():
                 insert_df = pd.DataFrame(construct_data)
                 output_df = pd.concat([output_df,insert_df],ignore_index=True)
 
-        st.dataframe(output_df,use_container_width=True)
         geocoded_points = output_df[['LATITUDE','LONGITUDE']].values.tolist()
-        st.write(geocoded_points)
+        st.write('This is a representation of the start, end and waypoints.')
         st.map(output_df)
 
         # Map inputs to package request parameters
@@ -106,9 +112,6 @@ def route_matrix():
             traf = 'false'
 
         route_plan = rp.route_matrix(points=geocoded_points,avoid=[],departAt=None,RouteType=route,travelMode=vehicle,traffic=traf)
-        route_pointz = route_plan[0]
-        st.json(route_pointz)
-        st.write(route_plan[1])
         
         # Create an empty json object to append points into 
         data_points_for_route = []
@@ -117,11 +120,8 @@ def route_matrix():
             for leg in route_points['legs']:
                 for points in leg['points']:
                     data_points_for_route.append(points)
-               
-                
-
-        #route_data = route_pointz["routes"][0]["legs"][0]["points"]
-        st.json(data_points_for_route)
+        # Display route as a collection of points -- should udpate this to be a line instead of collection of points. 
+        st.write('Your optimized route!')
         route_points = pd.json_normalize(data_points_for_route)
         st.map(route_points)
         
