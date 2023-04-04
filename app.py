@@ -151,7 +151,7 @@ def route_matrix():
             get_width=5
         )
  
-        pydeck_obj = pkd.Deck(layers=[layer], initial_view_state=view_state, tooltip={"text": "{name}"})
+        pydeck_obj = pdk.Deck(layers=[layer], initial_view_state=view_state, tooltip={"text": "{name}"})
         components.html(pydeck_obj, height = 700)
 
 
