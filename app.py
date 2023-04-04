@@ -131,8 +131,13 @@ def route_matrix():
         address_list = output_df['Address'].values.tolist()
         route_list = []
         route_from_json = [list(points['points']) for points in route_plan['routes'][0]['legs']]
-        route_process_list = [route_list.append(lat_long['latitude'],lat_long['longitude'])  for lat_long in route_from_json]
-        st.write(route_process_list)
+        st.write(route_from_json)
+        for route in route_from_json:
+            for coords in route:
+                route_list.append([coords])
+
+        # route_process_list = [route_list.append(lat_long['latitude'],lat_long['longitude'])  for lat_long in route_from_json]
+        st.write(route_list)
         for address in range(len(output_df['Address'].values.tolist())-1):
             name = address
             data = {'name':f"{address_list[address]} - {address_list[address+1]}",
