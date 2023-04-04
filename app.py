@@ -113,7 +113,7 @@ def route_matrix():
         # Loop through the response and extract all data that is associated with points:
         for route_points in route_pointz["routes"]:
             for leg in route_points['legs']:
-                for points in leg['point']:
+                for points in leg['points']:
                     st.write(points)
                 # data_points_for_route = leg['points']
                 
