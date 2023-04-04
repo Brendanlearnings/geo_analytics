@@ -125,7 +125,7 @@ def route_matrix():
             traf = 'false'
 
         route_plan = rp.route_matrix(points=geocoded_points,avoid=[],departAt=None,RouteType=route,travelMode=vehicle,traffic=traf)
-        st.json(route_plan)
+        # st.json(route_plan)
         # Create the required object for use by pydeck 
         data_points_for_route = []
         address_list = output_df['Address'].values.tolist()
@@ -164,10 +164,10 @@ def route_matrix():
                     'path':str(route_list[address])}
             data_points_for_route.append(data)
         
-        st.json(data_points_for_route)
+        
         maps_df = pd.json_normalize(data_points_for_route)
-        df_test = st.dataframe(maps_df)
-        st.write(df_test.dtypes)
+        # df_test = st.dataframe(maps_df)
+        st.write(maps_df.dtypes)
         layer = pdk.Layer(
                         type="PathLayer",
                         data=maps_df,
