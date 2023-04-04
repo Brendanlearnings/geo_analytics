@@ -128,11 +128,12 @@ def route_matrix():
         # Create an empty json object to append points into 
         data_points_for_route = {}
         address_list = output_df['Address'].values.tolist()
+        st.write
         for address in range(len(output_df['Address'].values.tolist())-1):
             name = address
             data = {'name':[f"{address_list[address]} - {address_list[address+1]}"],
                     'color':[random_color_generator()],
-                    'path':[[points for points in route_plan['routes'][0]['legs']]]}
+                    'path':[[points['points'] for points in route_plan['routes'][0]['legs']]]}
             data_points_for_route.update(data)
             
         st.json(data_points_for_route)
