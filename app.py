@@ -165,7 +165,10 @@ def route_matrix():
                     'path':route_list[address]}
             data_points_for_route.append(data)
         
-        st.download_button(data=data_points_for_route)
+        st.download_button(
+            data=data_points_for_route,
+            file_name='large_df.json',
+            mime='text/csv',)
         maps_df = pd.json_normalize(data_points_for_route)
         # df_test = st.dataframe(maps_df)
         st.dataframe(maps_df)
