@@ -52,9 +52,9 @@ def route_matrix():
                   'fastest - time optimized route',
                   'shortest - utilize the shortest route available'))
     vehicle = st.selectbox('With what vehicle are you traveling with?',
-                ('bicycle',
+                ('car',
+                 'bicycle',
                  'bus',
-                 'car',
                  'motorcycle',
                  'pedestrian',
                  'taxi',
