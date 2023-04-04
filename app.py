@@ -133,7 +133,7 @@ def route_matrix():
             name = address
             data = {'name':[f"{address_list[address]} - {address_list[address+1]}"],
                     'color':[random_color_generator()],
-                    'path':[route_from_json[address]]}
+                    'path':[lat_long for lat_long in route_from_json[address]]}
             data_points_for_route.append(data)
 
         maps_df = pd.json_normalize(data_points_for_route)
@@ -152,6 +152,7 @@ def route_matrix():
  
         pydeck_obj = pdk.Deck(layers=[layer], initial_view_state=view_state, tooltip={"text": "{name}"})
         components.html(pydeck_obj, height = 700)
+
 
 
         # route_plan['routes'][0]['legs']
