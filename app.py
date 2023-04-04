@@ -135,7 +135,7 @@ def route_matrix():
             data = {'name':[f"{address_list[address]} - {address_list[address+1]}"],
                     'color':[random_color_generator()],
                     'path':[[points['points'] for points in route_plan['routes'][0]['legs']]]}
-            data_points_for_route.update(data)
+            data_points_for_route.append(data)
             
         st.json(data_points_for_route)
 
