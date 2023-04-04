@@ -140,7 +140,7 @@ def route_matrix():
         maps_df = pd.json_normalize(data_points_for_route)
         st.dataframe(maps_df)
         view_state = pdk.ViewState(latitude=-34.11818,longitude=18.83057,zoom=10)
-        layer = pkd.Layer(
+        layer = pdk.Layer(
             type="PathLayer",
             data=maps_df,
             pickable=True,
