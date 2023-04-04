@@ -198,7 +198,7 @@ def test_map():
 
 
     df["color"] = df["color"].apply(hex_to_rgb)
-
+    st.write(df.dtypes())
     st.dataframe(df)
     view_state = pdk.ViewState(latitude=37.782556, longitude=-122.3484867, zoom=10)
 
