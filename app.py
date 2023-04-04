@@ -124,8 +124,8 @@ def route_matrix():
         st.write('Your optimized route!')
         route_points = pd.json_normalize(data_points_for_route)
         st.map(route_points)
-        total_travel_time = route_plan['routes']['liveTrafficIncidentsTravelTimeInSeconds']
-        st.write(total_travel_time)
+        # total_travel_time = route_plan['routes']['liveTrafficIncidentsTravelTimeInSeconds']
+        # st.write(total_travel_time)
         st.json(route_plan)
         
         
