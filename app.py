@@ -180,7 +180,6 @@ def route_matrix():
         state_view = pdk.ViewState(latitude=-34.11818,longitude=18.83057,zoom=10)
         st.pydeck_chart(pdk.Deck(layers = [layer],
                         initial_view_state=state_view,
-                        tooltip={"text": "{name}"}
                         ))
 
 def test_map():
@@ -189,7 +188,7 @@ def test_map():
     chart_data = pd.DataFrame(
        np.random.randn(1000, 2) / [50, 50] + [37.76, -122.4],
        columns=['lat', 'lon'])
-    
+
     st.pydeck_chart(pdk.Deck(
         map_style=None,
         initial_view_state=pdk.ViewState(
