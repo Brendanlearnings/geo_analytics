@@ -125,21 +125,33 @@ def route_matrix():
 
         route_plan = rp.route_matrix(points=geocoded_points,avoid=[],departAt=None,RouteType=route,travelMode=vehicle,traffic=traf)
         st.json(route_plan)
-        # Create an empty json object to append points into 
+        # Create the required object for use by pydeck 
         data_points_for_route = []
         address_list = output_df['Address'].values.tolist()
         route_from_json = [points['points'] for points in route_plan['routes'][0]['legs']]
-        st.json(route_from_json)
-        st.write(address_list)
-        st.write(len(address_list))
         for address in range(len(output_df['Address'].values.tolist())-1):
             name = address
             data = {'name':[f"{address_list[address]} - {address_list[address+1]}"],
                     'color':[random_color_generator()],
                     'path':[route_from_json[address]]}
             data_points_for_route.append(data)
-            
-        st.json(data_points_for_route)
+
+        maps_df = pd.read_json(data_points_for_route)
+        view_state = pdk.ViewState(latitude=-34.11818,longitude=18.83057,zoom=10)
+        layer = pkd.Layer(
+            type="PathLayer",
+            data=maps_df,
+            pickable=True,
+            get_color="color",
+            width_scale=20,
+            width_min_pixels=2,
+            get_path="path",
+            get_width=5
+        )
+
+        pydeck_obj = pdk.Deck(layers=[layer], initial_view_state=view_state, tooltip={"text": "{name}"})
+        components.html(pydeck_obj, height = 700)
+
 
         # route_plan['routes'][0]['legs']
         # Loop through the response and extract all data that is associated with points:
