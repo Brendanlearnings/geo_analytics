@@ -4,6 +4,8 @@ import streamlit as st
 import streamlit.components.v1 as components
 import geocodev2 as gc
 import route_planner as rp
+import pydeck as pdk
+import random
 ############################################
 
 ####### Fucntions for reuse ####
@@ -22,7 +24,14 @@ def geocode_to_df(location):
     map_df = pd.DataFrame(map_data)
 
     return map_df,all_data_from_response,lat,long
+
+def random_color_generator():
+    chars = '0123456789ABCDEF'
+
+    return '#'+''.join(random.sample(chars,6))
+
 ################################
+
 ####### App Pages ###########
 def interactive_map():
     st.title('Point of Interest within a given isochrone')
@@ -51,6 +60,8 @@ def route_matrix():
     st.markdown('* The first address is the starting.')
     st.markdown('* The last address is the destination')
     st.markdown('* The waypoints can be ordered however you like, the module will determine the most efficient between them.')
+
+    # Input elements
     construct_df = pd.DataFrame({'Address': []}, dtype=str)
     st.experimental_data_editor(construct_df,num_rows='dynamic',key="data_editor",use_container_width=True)
     st.markdown('Please select the options you would like to use in the module.')
@@ -71,6 +82,7 @@ def route_matrix():
                  ('Yes',
                   'No'))
 
+    # Display the output for the given input parameters
     if st.button('Submit'):
         
         data_for_request = construct_df.values.tolist()
@@ -114,44 +126,40 @@ def route_matrix():
         route_plan = rp.route_matrix(points=geocoded_points,avoid=[],departAt=None,RouteType=route,travelMode=vehicle,traffic=traf)
         
         # Create an empty json object to append points into 
-        data_points_for_route = []
+        data_points_for_route = {}
+        address_list = output_df['Address'].values.tolist()
+        for address in range(len(output_df['Address'].values.tolist())-1):
+            name = address
+            data = {'name':[f"{address_list[address]} - {address_list[address+1]}"],
+                    'color':[random_color_generator()],
+                    'path':[[leg['points'] for route_points in route_plan["routes"] for leg in route_points['legs']]]}
+            data_points_for_route.update(data)
+            
+        st.json(data_points_for_route)
         # Loop through the response and extract all data that is associated with points:
-        for route_points in route_plan["routes"]:
-            for leg in route_points['legs']:
-                for points in leg['points']:
-                    data_points_for_route.append(points)
+        # for route_points in route_plan["routes"]:
+        #     for leg in route_points['legs']:
+        #         print(leg['points'])
+        #         for points in leg['points']:
+        #             data_points_for_route.append(points)
         # Display route as a collection of points -- should udpate this to be a line instead of collection of points. 
-        st.write('Your optimized route!')
-        route_points = pd.json_normalize(data_points_for_route)
-        st.map(route_points)
+        # st.write('Your optimized route!')
+        # route_points = pd.json_normalize(data_points_for_route)
+        # st.map(route_points)
 
-        # total_travel_metadata = pd.DataFrame({'Address':[],
-        #                                 'TravelTimeHoursNoTraffic':[],
-        #                                 'TravelTimeHoursHistorical':[],
-        #                                 'TravelTimeHoursLiveTraffic':[],
-        #                                 'TravelDistanceKM': [],
-        #                                 'DepartureTime':[],
-        #                                 'ArrivalTime':[]
-        #                                 })
-        process_json_total_travel = route_plan['routes'][0]['summary']
-        json_total_travel = {'Address':['Total'],
-                            'TravelTimeHoursNoTraffic': [(process_json_total_travel['noTrafficTravelTimeInSeconds'])/60/60],
-                            'TravelTimeHoursHistorical': [(process_json_total_travel['historicTrafficTravelTimeInSeconds'])/60/60],
-                            'TravelTimeHoursLiveTraffic': [(process_json_total_travel['liveTrafficIncidentsTravelTimeInSeconds'])/60/60],
-                            'TravelDistanceKM': [(process_json_total_travel['lengthInMeters'])/1000],
-                             'DepartureTime': [process_json_total_travel['departureTime']],
-                             'ArrivalTime': [process_json_total_travel['arrivalTime']]
-        }
+        # process_json_total_travel = route_plan['routes'][0]['summary']
+        # json_total_travel = {'Address':['Total'],
+        #                     'TravelTimeHoursNoTraffic': [(process_json_total_travel['noTrafficTravelTimeInSeconds'])/60/60],
+        #                     'TravelTimeHoursHistorical': [(process_json_total_travel['historicTrafficTravelTimeInSeconds'])/60/60],
+        #                     'TravelTimeHoursLiveTraffic': [(process_json_total_travel['liveTrafficIncidentsTravelTimeInSeconds'])/60/60],
+        #                     'TravelDistanceKM': [(process_json_total_travel['lengthInMeters'])/1000],
+        #                      'DepartureTime': [process_json_total_travel['departureTime']],
+        #                      'ArrivalTime': [process_json_total_travel['arrivalTime']]
+        # }
         
         
-        travel_metadata_df = pd.DataFrame(json_total_travel)
-        st.dataframe(travel_metadata_df,use_container_width=True)
-        # total_travel_time = (route_plan['routes'][0]['summary']['liveTrafficIncidentsTravelTimeInSeconds']) / 60 / 60
-        # st.markdown(f'The total travel time for the trip = {round(total_travel_time,3)} hours')
-        # st.write(total_travel_time)
-        # st.json(route_plan)
-        
-        
+        # travel_metadata_df = pd.DataFrame(json_total_travel)
+        # st.dataframe(travel_metadata_df,use_container_width=True)
 
 # ################################
 
