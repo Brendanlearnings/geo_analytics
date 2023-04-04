@@ -141,9 +141,10 @@ def route_matrix():
                 wrapper = []
                 for collect in route:
                     for lat_long in collect:
-                        wrapper.append(lat_long.values())
-                route_list.append(wrapper)
-        st.write(route_list)
+                        st.write(type(lat_long))
+                        # wrapper.append(lat_long.values())
+        #         route_list.append(wrapper)
+        # st.write(route_list)
 
         # for route in route_from_json:
         #     route_list.append(route.values())
