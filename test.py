@@ -26,6 +26,6 @@ layer = pdk.Layer(
     get_width=5,
 )
 
-print(df.head(20))
+print(df.dtypes)
 # r = pdk.Deck(layers=[layer], initial_view_state=view_state, tooltip={"text": "{name}"})
 # r.to_html("path_layer.html")
