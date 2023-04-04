@@ -28,7 +28,7 @@ def geocode_to_df(location):
     return map_df,all_data_from_response,lat,long
 
 def random_color_generator():
-    color = list(np.random.choice(range(256), size=3))
+    color = tuple(np.random.choice(range(256), size=3))
 
     return color
 
