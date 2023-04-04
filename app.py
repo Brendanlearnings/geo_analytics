@@ -126,15 +126,17 @@ def route_matrix():
         route_plan = rp.route_matrix(points=geocoded_points,avoid=[],departAt=None,RouteType=route,travelMode=vehicle,traffic=traf)
         st.json(route_plan)
         # Create an empty json object to append points into 
-        data_points_for_route = {}
+        data_points_for_route = []
         address_list = output_df['Address'].values.tolist()
+        route_from_json = [points['points'] for points in route_plan['routes'][0]['legs']]
+        st.json(route_from_json)
         st.write(address_list)
         st.write(len(address_list))
         for address in range(len(output_df['Address'].values.tolist())-1):
             name = address
             data = {'name':[f"{address_list[address]} - {address_list[address+1]}"],
                     'color':[random_color_generator()],
-                    'path':[[points['points'] for points in route_plan['routes'][0]['legs']]]}
+                    'path':[]}
             data_points_for_route.append(data)
             
         st.json(data_points_for_route)
