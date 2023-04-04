@@ -124,6 +124,7 @@ def route_matrix():
         st.write('Your optimized route!')
         route_points = pd.json_normalize(data_points_for_route)
         st.map(route_points)
+        st.json(route_plan)
         
         
 
