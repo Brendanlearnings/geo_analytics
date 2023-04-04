@@ -134,13 +134,13 @@ def route_matrix():
         #                                 'ArrivalTime':[]
         #                                 })
         process_json_total_travel = route_plan['routes'][0]['summary']
-        json_total_travel = {'Address':'Total',
-                            'TravelTimeHoursNoTraffic': (process_json_total_travel['noTrafficTravelTimeInSeconds'])/60/60,
-                            'TravelTimeHoursHistorical': (process_json_total_travel['historicTrafficTravelTimeInSeconds'])/60/60,
-                            'TravelTimeHoursLiveTraffic': (process_json_total_travel['liveTrafficIncidentsTravelTimeInSeconds'])/60/60,
-                            'TravelDistanceKM': (process_json_total_travel['lengthInMeters'])/1000,
-                             'DepartureTime': process_json_total_travel['departureTime'],
-                             'ArrivalTime': process_json_total_travel['arrivalTime']
+        json_total_travel = {'Address':['Total'],
+                            'TravelTimeHoursNoTraffic': [(process_json_total_travel['noTrafficTravelTimeInSeconds'])/60/60],
+                            'TravelTimeHoursHistorical': [(process_json_total_travel['historicTrafficTravelTimeInSeconds'])/60/60],
+                            'TravelTimeHoursLiveTraffic': [(process_json_total_travel['liveTrafficIncidentsTravelTimeInSeconds'])/60/60],
+                            'TravelDistanceKM': [(process_json_total_travel['lengthInMeters'])/1000],
+                             'DepartureTime': [process_json_total_travel['departureTime']],
+                             'ArrivalTime': [process_json_total_travel['arrivalTime']]
         }
         
         
