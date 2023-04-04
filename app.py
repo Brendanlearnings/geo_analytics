@@ -124,7 +124,7 @@ def route_matrix():
             traf = 'false'
 
         route_plan = rp.route_matrix(points=geocoded_points,avoid=[],departAt=None,RouteType=route,travelMode=vehicle,traffic=traf)
-        
+        st.json(route_plan)
         # Create an empty json object to append points into 
         data_points_for_route = {}
         address_list = output_df['Address'].values.tolist()
