@@ -136,12 +136,12 @@ def route_matrix():
         #         route_list.append([dict_obj['latitude'],dict_obj['longitude']])
         # st.write(route_list)
 
-        for points in route_plan['routes'][0]['legs']:
-            for route in points['points']:
+        for legs in route_plan['routes'][0]['legs']:
+            for route in legs['points']:
                 wrapper = []
-                route_list.append(wrapper)
                 for lat_long in route:
-                    wrapper.append(lat_long.values())
+                    wrapper.append([lat_long['latitude'],lat_long['longitude']])
+                route_list.append(wrapper)
         st.write(route_list)
 
         # for route in route_from_json:
