@@ -136,6 +136,7 @@ def route_matrix():
                     'path':[lat_long for lat_long in route_from_json[address]]}
             data_points_for_route.append(data)
 
+        st.json(data_points_for_route)
         maps_df = pd.json_normalize(data_points_for_route)
         st.dataframe(maps_df)
         view_state = pdk.ViewState(latitude=-34.11818,longitude=18.83057,zoom=10)
@@ -150,7 +151,7 @@ def route_matrix():
             get_width=5
         )
  
-        pydeck_obj = pdk.Deck(layers=[layer], initial_view_state=view_state, tooltip={"text": "{name}"})
+        pydeck_obj = pkd.Deck(layers=[layer], initial_view_state=view_state, tooltip={"text": "{name}"})
         components.html(pydeck_obj, height = 700)
 
 
