@@ -125,7 +125,7 @@ def route_matrix():
             traf = 'false'
 
         route_plan = rp.route_matrix(points=geocoded_points,avoid=[],departAt=None,RouteType=route,travelMode=vehicle,traffic=traf)
-        st.json(route_plan)
+        st.write(type(route_plan))
         # Create the required object for use by pydeck 
         data_points_for_route = []
         address_list = output_df['Address'].values.tolist()
