@@ -140,8 +140,9 @@ def route_matrix():
             for route in legs['points']:
                 wrapper = []
                 for collect in route:
-                    for lat_long in collect:
-                        st.write(type(lat_long))
+                    st.write(type(collect))
+                    # for lat_long in collect:
+                    #     st.write(type(lat_long))
                         # wrapper.append(lat_long.values())
         #         route_list.append(wrapper)
         # st.write(route_list)
