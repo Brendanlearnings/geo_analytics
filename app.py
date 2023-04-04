@@ -27,7 +27,7 @@ def geocode_to_df(location):
     return map_df,all_data_from_response,lat,long
 
 def random_color_generator():
-    color = tuple(np.random.choice(range(256), size=3))
+    color = list(np.random.choice(range(256), size=3))
 
     return color
 
@@ -177,9 +177,10 @@ def route_matrix():
                         get_path="path",
                         get_width=5)
         state_view = pdk.ViewState(latitude=-34.11818,longitude=18.83057,zoom=10)
-        st.pydeck_chart(pdk.Deck(map_style=None,
+        st.pydeck_chart(pdk.Deck(layers = [layer],
                         initial_view_state=state_view,
-                        layers = [layer]))
+                        tooltip={"text": "{name}"}
+                        ))
  
         # pydeck_obj = pdk.Deck(layers=[layer], initial_view_state=view_state, tooltip={"text": "{name}"})
         # components.html(pydeck_obj, height = 700)
