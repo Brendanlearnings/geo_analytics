@@ -124,10 +124,30 @@ def route_matrix():
         st.write('Your optimized route!')
         route_points = pd.json_normalize(data_points_for_route)
         st.map(route_points)
-        total_travel_time = (route_plan['routes'][0]['summary']['liveTrafficIncidentsTravelTimeInSeconds']) / 60 / 60
-        st.markdown(f'The total travel time for the trip = {total_travel_time}')
-        st.write(total_travel_time)
-        st.json(route_plan)
+
+        total_travel_metadata = pd.DataFrame({'Address':[],
+                                        'TravelTimeHoursNoTraffic':[],
+                                        'TravelTimeHoursHistorical':[],
+                                        'TravelTimeHoursLiveTraffic':[],
+                                        'TravelDistanceKM': [],
+                                        'DepartureTime':[],
+                                        'ArrivalTime':[]
+                                        })
+        process_json_total_travel = route_plan['routes'][0]['summary']
+        json_total_travel = ['Total',
+                            (process_json_total_travel['noTrafficTravelTimeInSeconds'])/60/60,
+                            (process_json_total_travel['historicTrafficTravelTimeInSeconds'])/60/60,
+                            (process_json_total_travel['liveTrafficIncidentsTravelTimeInSeconds'])/60/60,
+                            (process_json_total_travel['lengthInMeters'])/1000,
+                             process_json_total_travel['departureTime'],
+                             process_json_total_travel['arrivalTime']
+                            ]
+        travel_metadata = pd.json_normalize(json_total_travel)
+        st.dataframe(travel_metadata,use_container_width=True)
+        # total_travel_time = (route_plan['routes'][0]['summary']['liveTrafficIncidentsTravelTimeInSeconds']) / 60 / 60
+        # st.markdown(f'The total travel time for the trip = {round(total_travel_time,3)} hours')
+        # st.write(total_travel_time)
+        # st.json(route_plan)
         
         
 
