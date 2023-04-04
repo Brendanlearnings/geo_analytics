@@ -129,13 +129,15 @@ def route_matrix():
         # Create the required object for use by pydeck 
         data_points_for_route = []
         address_list = output_df['Address'].values.tolist()
+        route_list = []
         route_from_json = [list(points['points']) for points in route_plan['routes'][0]['legs']]
+        route_process_list = [route_list.append([lat_long['latitude'],lat_long['longitude']])  for lat_long in route_from_json[address]]
         st.write(route_from_json)
         for address in range(len(output_df['Address'].values.tolist())-1):
             name = address
             data = {'name':f"{address_list[address]} - {address_list[address+1]}",
                     'color':random_color_generator(),
-                    'path':[[lat_long['latitude'],lat_long['longitude']]  for lat_long in route_from_json[address]]}
+                    'path':route_list[address]}
             data_points_for_route.append(data)
 
         st.json(data_points_for_route)
