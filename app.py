@@ -6,6 +6,7 @@ import geocodev2 as gc
 import route_planner as rp
 import pydeck as pdk
 import random
+import numpy as np
 ############################################
 
 ####### Fucntions for reuse ####
@@ -26,9 +27,9 @@ def geocode_to_df(location):
     return map_df,all_data_from_response,lat,long
 
 def random_color_generator():
-    chars = '0123456789ABCDEF'
+    color = tuple(np.random.choice(range(256), size=3))
 
-    return '#'+''.join(random.sample(chars,6))
+    return color
 
 ################################
 
@@ -128,18 +129,19 @@ def route_matrix():
         # Create the required object for use by pydeck 
         data_points_for_route = []
         address_list = output_df['Address'].values.tolist()
-        route_from_json = [points['points'] for points in route_plan['routes'][0]['legs']]
+        route_from_json = [list(points['points']) for points in route_plan['routes'][0]['legs']]
+        st.write(route_from_json)
         for address in range(len(output_df['Address'].values.tolist())-1):
             name = address
             data = {'name':[f"{address_list[address]} - {address_list[address+1]}"],
                     'color':[random_color_generator()],
-                    'path':[lat_long for lat_long in route_from_json[address]]}
+                    'path':[lat_long[0] for lat_long in route_from_json[address]]}
             data_points_for_route.append(data)
 
         st.json(data_points_for_route)
         maps_df = pd.json_normalize(data_points_for_route)
         st.dataframe(maps_df)
-        view_state = pdk.ViewState(latitude='-34.11818',longitude='18.83057',zoom=10)
+        view_state = pdk.ViewState(latitude=-34.11818,longitude=18.83057,zoom=10)
         layer = pdk.Layer(
             type="PathLayer",
             data=maps_df,
