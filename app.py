@@ -142,8 +142,10 @@ def route_matrix():
                              process_json_total_travel['departureTime'],
                              process_json_total_travel['arrivalTime']
                             ]
+        
         travel_metadata = pd.json_normalize(json_total_travel)
-        st.dataframe(travel_metadata,use_container_width=True)
+        travel_metadata_df = total_travel_metadata(travel_metadata)
+        st.dataframe(travel_metadata_df,use_container_width=True)
         # total_travel_time = (route_plan['routes'][0]['summary']['liveTrafficIncidentsTravelTimeInSeconds']) / 60 / 60
         # st.markdown(f'The total travel time for the trip = {round(total_travel_time,3)} hours')
         # st.write(total_travel_time)
