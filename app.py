@@ -169,7 +169,7 @@ def route_matrix():
         st.dataframe(maps_df)
         layer = pdk.Layer(
                         type="PathLayer",
-                        data=maps_df,
+                        data=maps_df[path],
                         pickable=True,
                         get_color="color",
                         width_scale=20,
