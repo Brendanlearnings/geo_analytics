@@ -134,7 +134,7 @@ def route_matrix():
         st.write(route_from_json)
         for route in route_from_json:
             for coords in route:
-                route_list.append(coords)
+                route_list.append(list(coords))
                 # route_list.append([coords['latitude'], coords('longitude')])
 
         # route_process_list = [route_list.append(lat_long['latitude'],lat_long['longitude'])  for lat_long in route_from_json]
