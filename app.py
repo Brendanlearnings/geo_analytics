@@ -214,7 +214,7 @@ def test_map():
     st.pydeck_chart(pdk.Deck(
         layers = [layer],
         initial_view_state = view_state,
-        tooltip =tooltip={"text": "{name}"}
+        tooltip ={"text": "{name}"}
     )
     )
 
