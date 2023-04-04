@@ -167,20 +167,19 @@ def route_matrix():
         st.json(data_points_for_route)
         maps_df = pd.json_normalize(data_points_for_route)
         st.dataframe(maps_df)
-        view_state = pdk.ViewState(latitude=-34.11818,longitude=18.83057,zoom=10)
-        layer = pdk.Layer(
-            type="PathLayer",
-            data=maps_df,
-            pickable=True,
-            get_color="color",
-            width_scale=20,
-            width_min_pixels=2,
-            get_path="path",
-            get_width=5
-        )
+        st.pydeck_chart(pdk.Deck(initial_view_state=(latitude=-34.11818,longitude=18.83057,zoom=10)),
+                        layer = pdk.Layer(
+                        type="PathLayer",
+                        data=maps_df,
+                        pickable=True,
+                        get_color="color",
+                        width_scale=20,
+                        width_min_pixels=2,
+                        get_path="path",
+                        get_width=5))
  
-        pydeck_obj = pdk.Deck(layers=[layer], initial_view_state=view_state, tooltip={"text": "{name}"})
-        components.html(pydeck_obj, height = 700)
+        # pydeck_obj = pdk.Deck(layers=[layer], initial_view_state=view_state, tooltip={"text": "{name}"})
+        # components.html(pydeck_obj, height = 700)
 
 
 
