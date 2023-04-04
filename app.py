@@ -111,12 +111,12 @@ def route_matrix():
         st.write(route_plan[1])
         
         # Create an empty json object to append points into 
-        data_points_for_route = {}
+        data_points_for_route = []
         # Loop through the response and extract all data that is associated with points:
         for route_points in route_pointz["routes"]:
             for leg in route_points['legs']:
                 for points in leg['points']:
-                    data_points_for_route.update(points)
+                    data_points_for_route.append(points)
                
                 
 
