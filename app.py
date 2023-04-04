@@ -170,7 +170,7 @@ def route_matrix():
         # df_test = st.dataframe(maps_df)
         st.dataframe(maps_df)
         layer = pdk.Layer(
-                        type="PathLayer",
+                         type="PathLayer",
                         data=maps_df,
                         pickable=True,
                         get_color="color",
@@ -179,8 +179,10 @@ def route_matrix():
                         get_path="path",
                         get_width=5,)
         state_view = pdk.ViewState(latitude=-34.11818,longitude=18.83057,zoom=10)
-        st.pydeck_chart(pdk.Deck(layers = [layer],
+        st.pydeck_chart(pdk.Deck(
+                        layers = [layer],
                         initial_view_state=state_view,
+                        tooltip ={"text": "{name}"}
                         ))
 
 def test_map():
