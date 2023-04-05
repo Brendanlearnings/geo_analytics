@@ -12,7 +12,7 @@ def hex_to_rgb(h):
 
 df["color"] = df["color"].apply(hex_to_rgb)
 
-
+print(df.head(10))
 view_state = pdk.ViewState(latitude=37.782556, longitude=-122.3484867, zoom=10)
 
 layer = pdk.Layer(
