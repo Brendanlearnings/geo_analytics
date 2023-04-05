@@ -174,51 +174,51 @@ def route_matrix():
         st.write(type(data_points_for_route))
         # data_points_for_route = json.loads(data_points_for_route)
 
-        view_state = pdk.ViewState(latitude=-33.76401, longitude=18.97092, zoom=10)
-        layer = pdk.Layer(
-              type="PathLayer",
-              data=data_points_for_route,
-              pickable=True,
-              get_color="color",
-              width_scale=20,
-              width_min_pixels=2,
-              get_path="path",
-              get_width=5,
-        )
+        # view_state = pdk.ViewState(latitude=-33.76401, longitude=18.97092, zoom=10)
+        # layer = pdk.Layer(
+        #       type="PathLayer",
+        #       data=data_points_for_route,
+        #       pickable=True,
+        #       get_color="color",
+        #       width_scale=20,
+        #       width_min_pixels=2,
+        #       get_path="path",
+        #       get_width=5,
+        # )
 
-        st.pydeck_chart(pdk.Deck(
-                    layers = [layer],
-                    initial_view_state = view_state,
-                    tooltip ={"text": "{name}"}
-            ))
+        # st.pydeck_chart(pdk.Deck(
+        #             layers = [layer],
+        #             initial_view_state = view_state,
+        #             tooltip ={"text": "{name}"}
+        #     ))
 
         
         # df_test = st.dataframe(maps_df)
         # Test data source to see if that changes anything
-        # DATA_URL = "https://raw.githubusercontent.com/visgl/deck.gl-data/master/website/bart-lines.json"
-        # df = pd.read_json(DATA_URL)
+        DATA_URL = "https://raw.githubusercontent.com/visgl/deck.gl-data/master/website/bart-lines.json"
+        df = pd.read_json(DATA_URL)
 
-        # def hex_to_rgb(h):
-        #     h = h.lstrip("#")
-        #     return tuple(int(h[i : i + 2], 16) for i in (0, 2, 4))
+        def hex_to_rgb(h):
+            h = h.lstrip("#")
+            return tuple(int(h[i : i + 2], 16) for i in (0, 2, 4))
         
-        # df["color"] = df["color"].apply(hex_to_rgb)
-        # view_state = pdk.ViewState(latitude=37.782556, longitude=-122.3484867, zoom=10)
+        df["color"] = df["color"].apply(hex_to_rgb)
+        view_state = pdk.ViewState(latitude=37.782556, longitude=-122.3484867, zoom=10)
 
-        # layer = pdk.Layer(
-        #     type="PathLayer",
-        #     data=df,
-        #     pickable=True,
-        #     get_color="color",
-        #     width_scale=20,
-        #     width_min_pixels=2,
-        #     get_path="path",
-        #     get_width=5,
-        # )
+        layer = pdk.Layer(
+            type="PathLayer",
+            data=df,
+            pickable=True,
+            get_color="color",
+            width_scale=20,
+            width_min_pixels=2,
+            get_path="path",
+            get_width=5,
+        )
 
-        # st.pydeck_chart(pdk.Deck(
-        #     layers=[layer], initial_view_state=view_state, tooltip={"text": "{name}"}
-        # ))
+        st.pydeck_chart(pdk.Deck(
+            layers=[layer], initial_view_state=view_state, tooltip={"text": "{name}"}
+        ))
         ##st.dataframe(maps_df)
         #layer = pdk.Layer(
         #                 type="PathLayer",
