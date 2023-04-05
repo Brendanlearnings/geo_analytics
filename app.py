@@ -173,8 +173,8 @@ def route_matrix():
 
         view_state = pdk.ViewState(latitude=-33.76401, longitude=18.97092, zoom=10)
         layer = pdk.Layer(
-             'path-layer',
-             data=data_points_for_route,
+             'PathLayer',
+             data=data_points_for_route["path"],
              get_path="path",
              get_color=[255, 255, 255],
              get_width=5,
