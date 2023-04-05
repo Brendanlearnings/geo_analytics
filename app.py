@@ -168,12 +168,12 @@ def route_matrix():
         st.json(data_points_for_route)
         maps_df = pd.json_normalize(data_points_for_route)
 
-        view_state = pdk.ViewState(latitude=37.782556, longitude=-122.3484867, zoom=10)
+        view_state = pdk.ViewState(latitude=-33.76401,, longitude=18.97092, zoom=10)
         layer = pdk.Layer(
              'PathLayer',
              data=data_points_for_route[0]['path'],
              get_path=data_points_for_route[0]['path'],
-             get_color=[255, 17, 180],
+             get_color=[255, 255, 255],
              get_width=5,
         )
 
