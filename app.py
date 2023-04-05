@@ -169,23 +169,48 @@ def route_matrix():
         maps_df = pd.json_normalize(data_points_for_route)
         
         # df_test = st.dataframe(maps_df)
-        st.dataframe(maps_df)
-        layer = pdk.Layer(
-                         type="PathLayer",
-                        data=maps_df,
-                        pickable=True,
-                        get_color="color",
-                        width_scale=20,
-                        width_min_pixels=2,
-                        get_path="path",
-                        get_width=5,)
-        state_view = pdk.ViewState(latitude=-34.11818,longitude=18.83057,zoom=10)
-        st.pydeck_chart(pdk.Deck(
-                        layers = [layer],
-                        initial_view_state=state_view,
-                        tooltip ={"text": "{name}"}
-                        ))
+        # Test data source to see if that changes anything
+        DATA_URL = "https://raw.githubusercontent.com/visgl/deck.gl-data/master/website/bart-lines.json"
+        df = pd.read_json(DATA_URL)
+        
+        def hex_to_rgb(h):
+            h = h.lstrip("#")
+            return tuple(int(h[i : i + 2], 16) for i in (0, 2, 4))
+        
+        df["color"] = df["color"].apply(hex_to_rgb)
+        view_state = pdk.ViewState(latitude=37.782556, longitude=-122.3484867, zoom=10)
 
+        layer = pdk.Layer(
+            type="PathLayer",
+            data=df,
+            pickable=True,
+            get_color="color",
+            width_scale=20,
+            width_min_pixels=2,
+            get_path="path",
+            get_width=5,
+        )
+
+        st.pydeck_chart(pdk.Deck(
+            layers=[layer], initial_view_state=view_state, tooltip={"text": "{name}"}
+        ))
+        ##st.dataframe(maps_df)
+        #layer = pdk.Layer(
+        #                 type="PathLayer",
+        #                data=maps_df,
+        #                pickable=True,
+        #                get_color="color",
+        #                width_scale=20,
+        #                width_min_pixels=2,
+        #                get_path="path",
+        #                get_width=5,)
+        #state_view = pdk.ViewState(latitude=-34.11818,longitude=18.83057,zoom=10)
+        #st.pydeck_chart(pdk.Deck(
+        #                layers = [layer],
+        #                initial_view_state=state_view,
+        #                tooltip ={"text": "{name}"}
+        #                ))
+#
 def test_map():
 
 
@@ -199,6 +224,7 @@ def test_map():
 
 
     df["color"] = df["color"].apply(hex_to_rgb)
+
     st.write(df.dtypes)
     st.dataframe(df)
     view_state = pdk.ViewState(latitude=37.782556, longitude=-122.3484867, zoom=10)
