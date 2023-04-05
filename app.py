@@ -165,6 +165,7 @@ def route_matrix():
                     'path':route_list[address]}
             data_points_for_route.append(data)
         
+        st.write(type(data_points_for_route))
         st.json(data_points_for_route)
         maps_df = pd.json_normalize(data_points_for_route)
         data_points_for_route = json.loads(data_points_for_route)
