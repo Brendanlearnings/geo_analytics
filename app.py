@@ -161,8 +161,8 @@ def route_matrix():
         for address in range(len(output_df['Address'].values.tolist())-1):
             name = address
             data = {'name':f"{address_list[address]} - {address_list[address+1]}",
-                    'color':str(random_color_generator()),
-                    'path':str(route_list[address])}
+                    'color':random_color_generator(),
+                    'path':route_list[address]}
             data_points_for_route.append(data)
         
         st.write(type(data_points_for_route))
