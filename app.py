@@ -233,6 +233,7 @@ def test_map():
 
 
     DATA_URL = "https://raw.githubusercontent.com/visgl/deck.gl-data/master/website/bart-lines.json"
+    st.json(DATA_URL)
     df = pd.read_json(DATA_URL)
 
 
