@@ -167,7 +167,7 @@ def route_matrix():
         
         st.json(data_points_for_route)
         maps_df = pd.json_normalize(data_points_for_route)
-        data_points_for_route = json.load(data_points_for_route)
+        data_points_for_route = json.loads(data_points_for_route)
 
         view_state = pdk.ViewState(latitude=-33.76401, longitude=18.97092, zoom=10)
         layer = pdk.Layer(
