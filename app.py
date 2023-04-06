@@ -193,7 +193,7 @@ def route_matrix():
         # df_test = st.dataframe(maps_df)
         # Test data source to see if that changes anything
         #https://drive.google.com/file/d/1Efs9rwRtK6DtV6HoPoFZh9t4LF67SM0S/view?usp=sharing
-        DATA_URL = "https://drive.google.com/file/d/1Efs9rwRtK6DtV6HoPoFZh9t4LF67SM0S/view?usp=sharing"
+        DATA_URL = "https://drive.google.com/file/d/1Efs9rwRtK6DtV6HoPoFZh9t4LF67SM0S/view?usp=share_link"
         df = pd.read_json(DATA_URL)
 
         def hex_to_rgb(h):
