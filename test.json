@@ -1,11 +1,7 @@
 [
   {
     "name": "17 Bergsig Avenue, Hoog-en-droog, Paarl - 12 Scarbrow Street, Van Ryneveld, Strand, Cape Town",
-    "color": [
-      "180",
-      "251",
-      "249"
-    ],
+    "color": "#ed1c24",
     "path": [
       [
         -33.743,
@@ -2863,11 +2859,7 @@
   },
   {
     "name": "12 Scarbrow Street, Van Ryneveld, Strand, Cape Town - 2 Clam Road, Table View, Cape Town",
-    "color": [
-      "211",
-      "89",
-      "87"
-    ],
+    "color": "#ed1c24",
     "path": [
       [
         -34.11778,
