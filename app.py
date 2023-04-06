@@ -168,10 +168,7 @@ def route_matrix():
         st.write(type(data_points_for_route))
         st.json(data_points_for_route)
         maps_df = pd.json_normalize(data_points_for_route)
-        st.dataframe(maps_df)
-        data_points_for_route = dict(data_points_for_route[0])
-        st.json(data_points_for_route)
-        st.write(type(data_points_for_route))
+        
         # data_points_for_route = json.loads(data_points_for_route)
 
         # view_state = pdk.ViewState(latitude=-33.76401, longitude=18.97092, zoom=10)
@@ -195,14 +192,15 @@ def route_matrix():
         
         # df_test = st.dataframe(maps_df)
         # Test data source to see if that changes anything
-        DATA_URL = "https://raw.githubusercontent.com/visgl/deck.gl-data/master/website/bart-lines.json"
+        #https://drive.google.com/file/d/1Efs9rwRtK6DtV6HoPoFZh9t4LF67SM0S/view?usp=sharing
+        DATA_URL = "https://drive.google.com/file/d/1Efs9rwRtK6DtV6HoPoFZh9t4LF67SM0S/view?usp=sharing"
         df = pd.read_json(DATA_URL)
 
         def hex_to_rgb(h):
             h = h.lstrip("#")
             return tuple(int(h[i : i + 2], 16) for i in (0, 2, 4))
         
-        df["color"] = df["color"].apply(hex_to_rgb)
+        #df["color"] = df["color"].apply(hex_to_rgb)
         view_state = pdk.ViewState(latitude=37.782556, longitude=-122.3484867, zoom=10)
 
         layer = pdk.Layer(
