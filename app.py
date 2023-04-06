@@ -161,7 +161,7 @@ def route_matrix():
         for address in range(len(output_df['Address'].values.tolist())-1):
             name = address
             data = {'name':f"{address_list[address]} - {address_list[address+1]}",
-                    'color':tuple(random_color_generator()),
+                    'color':random_color_generator(),
                     'path':route_list[address]}
             data_points_for_route.append(data)
         
@@ -193,7 +193,7 @@ def route_matrix():
         # df_test = st.dataframe(maps_df)
         # Test data source to see if that changes anything
         #https://drive.google.com/file/d/1Efs9rwRtK6DtV6HoPoFZh9t4LF67SM0S/view?usp=sharing
-        DATA_URL = "https://drive.google.com/file/d/1Efs9rwRtK6DtV6HoPoFZh9t4LF67SM0S/view?usp=share_link"
+        DATA_URL = "https://raw.githubusercontent.com/Brendanlearnings/geo_analytics/main/test.json"
         df = pd.read_json(DATA_URL)
 
         def hex_to_rgb(h):
