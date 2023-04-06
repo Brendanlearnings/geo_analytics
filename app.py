@@ -207,7 +207,7 @@ def route_matrix():
             type="PathLayer",
             data=df,
             pickable=True,
-            get_color="color",
+            #get_color="color",
             width_scale=20,
             width_min_pixels=2,
             get_path="path",
