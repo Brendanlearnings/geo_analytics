@@ -165,7 +165,6 @@ def route_matrix():
                     'path':route_list[address]}
             data_points_for_route.append(data)
         
-        st.write(type(data_points_for_route))
         st.json(data_points_for_route)
         maps_df = pd.json_normalize(data_points_for_route)
         
@@ -194,7 +193,10 @@ def route_matrix():
         # Test data source to see if that changes anything
         #https://drive.google.com/file/d/1Efs9rwRtK6DtV6HoPoFZh9t4LF67SM0S/view?usp=sharing
         DATA_URL = "https://raw.githubusercontent.com/Brendanlearnings/geo_analytics/main/test.json"
+        url2 = 'https://raw.githubusercontent.com/visgl/deck.gl-data/master/website/bart-lines.json'
         df = pd.read_json(DATA_URL)
+        df2 = pd.read_json(url2)
+        st.dataframe(df2)
         st.dataframe(df)
 
         def hex_to_rgb(h):
