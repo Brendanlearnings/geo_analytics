@@ -126,6 +126,7 @@ def route_matrix():
             traf = 'false'
 
         route_plan = rp.route_matrix(points=geocoded_points,avoid=[],departAt=None,RouteType=route,travelMode=vehicle,traffic=traf)
+        st.json(route_plan)
         # st.json(route_plan)
         # Create the required object for use by pydeck 
         data_points_for_route = []
@@ -192,52 +193,37 @@ def route_matrix():
         # df_test = st.dataframe(maps_df)
         # Test data source to see if that changes anything
         #https://drive.google.com/file/d/1Efs9rwRtK6DtV6HoPoFZh9t4LF67SM0S/view?usp=sharing
-        DATA_URL = "https://raw.githubusercontent.com/Brendanlearnings/geo_analytics/main/test.json"
-        url2 = 'https://raw.githubusercontent.com/visgl/deck.gl-data/master/website/bart-lines.json'
-        df = pd.read_json(DATA_URL)
-        df2 = pd.read_json(url2)
-        st.dataframe(df2)
-        st.dataframe(df)
+        #DATA_URL = "https://raw.githubusercontent.com/Brendanlearnings/geo_analytics/main/test.json"
+        #url2 = 'https://raw.githubusercontent.com/visgl/deck.gl-data/master/website/bart-lines.json'
+        #df = pd.read_json(DATA_URL)
+        #df2 = pd.read_json(url2)
+        #st.dataframe(df2)
+        #st.dataframe(df)
+        #
+#
+        #def hex_to_rgb(h):
+        #    h = h.lstrip("#")
+        #    return tuple(int(h[i : i + 2], 16) for i in (0, 2, 4))
+        #
+        #df["color"] = df["color"].apply(hex_to_rgb)
+        #view_state = pdk.ViewState(latitude=-33.743, longitude=18.96527, zoom=10)
+#
+        #layer = pdk.Layer(
+        #    type="PathLayer",
+        #    data=df,
+        #    pickable=True,
+        #    get_color="color",
+        #    width_scale=20,
+        #    width_min_pixels=2,
+        #    get_path="path",
+        #    get_width=5,
+        #)
+#
+        #st.pydeck_chart(pdk.Deck(
+        #    layers=[layer], initial_view_state=view_state, tooltip={"text": "{name}"}
+        #))
 
-        def hex_to_rgb(h):
-            h = h.lstrip("#")
-            return tuple(int(h[i : i + 2], 16) for i in (0, 2, 4))
-        
-        df["color"] = df["color"].apply(hex_to_rgb)
-        view_state = pdk.ViewState(latitude=-33.743, longitude=18.96527, zoom=10)
-
-        df2["color"] = df2["color"].apply(hex_to_rgb)
-        view_state2 = pdk.ViewState(latitude=-33.743, longitude=18.96527, zoom=10)
-
-        layer = pdk.Layer(
-            type="PathLayer",
-            data=df,
-            pickable=True,
-            get_color="color",
-            width_scale=20,
-            width_min_pixels=2,
-            get_path="path",
-            get_width=5,
-        )
-
-        st.pydeck_chart(pdk.Deck(
-            layers=[layer], initial_view_state=view_state, tooltip={"text": "{name}"}
-        ))
-
-        layer2 = pdk.Layer(
-            type="PathLayer",
-            data=df2,
-            pickable=True,
-            get_color="color",
-            width_scale=20,
-            width_min_pixels=2,
-            get_path="path",
-            get_width=5,
-        )
-
-        st.pydeck_chart(pdk.Deck(
-            layers=[layer2], initial_view_state=view_state2, tooltip={"text": "{name}"}
-        ))
+       
         ##st.dataframe(maps_df)
         #layer = pdk.Layer(
         #                 type="PathLayer",
