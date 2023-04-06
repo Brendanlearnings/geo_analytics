@@ -195,6 +195,7 @@ def route_matrix():
         #https://drive.google.com/file/d/1Efs9rwRtK6DtV6HoPoFZh9t4LF67SM0S/view?usp=sharing
         DATA_URL = "https://raw.githubusercontent.com/Brendanlearnings/geo_analytics/main/test.json"
         df = pd.read_json(DATA_URL)
+        st.dataframe(df)
 
         def hex_to_rgb(h):
             h = h.lstrip("#")
