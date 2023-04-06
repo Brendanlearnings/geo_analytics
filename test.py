@@ -1,9 +1,17 @@
 import pandas as pd
 import pydeck as pdk
 
-DATA_URL = "https://raw.githubusercontent.com/visgl/deck.gl-data/master/website/bart-lines.json"
-df = pd.read_json(DATA_URL)
+# DATA_URL = "https://raw.githubusercontent.com/visgl/deck.gl-data/master/website/bart-lines.json"
+# df = pd.read_json(DATA_URL)
 
+# url = "https://raw.githubusercontent.com/Brendanlearnings/geo_analytics/main/test.json"
+
+
+# df2 = pd.read_json(url)
+
+# df.to_csv('original.csv')
+# df2.to_csv('mine.csv')
+df = pd.read_csv('mine.csv')
 
 def hex_to_rgb(h):
     h = h.lstrip("#")
@@ -26,6 +34,6 @@ layer = pdk.Layer(
     get_width=5,
 )
 
-print(df.dtypes)
-# r = pdk.Deck(layers=[layer], initial_view_state=view_state, tooltip={"text": "{name}"})
-# r.to_html("path_layer.html")
+
+r = pdk.Deck(layers=[layer], initial_view_state=view_state, tooltip={"text": "{name}"})
+r.to_html("mine_path_layer.html")
