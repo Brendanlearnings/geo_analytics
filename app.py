@@ -161,7 +161,7 @@ def route_matrix():
         for address in range(len(output_df['Address'].values.tolist())-1):
             name = address
             data = {'name':f"{address_list[address]} - {address_list[address+1]}",
-                    'color':random_color_generator(),
+                    'color':'#ed1c24',
                     'path':route_list[address]}
             data_points_for_route.append(data)
         
@@ -200,8 +200,8 @@ def route_matrix():
             h = h.lstrip("#")
             return tuple(int(h[i : i + 2], 16) for i in (0, 2, 4))
         
-        #df["color"] = df["color"].apply(hex_to_rgb)
-        view_state = pdk.ViewState(latitude=37.782556, longitude=-122.3484867, zoom=10)
+        df["color"] = df["color"].apply(hex_to_rgb)
+        view_state = pdk.ViewState(latitude=-33.743, longitude=18.96527, zoom=10)
 
         layer = pdk.Layer(
             type="PathLayer",
